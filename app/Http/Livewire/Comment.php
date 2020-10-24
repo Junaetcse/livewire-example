@@ -15,13 +15,15 @@ class Comment extends Component
          $this->comments=$initialcomment;
     }
 
+    public function updated($newComment)
+    {
+        $this->validate(['newComment' => 'required|max:200']);
+    }
+
     public function addComment()
     {
 
-        if($this->newComment == ''){
-            return;
-        }
-
+        $this->validate(['newComment' => 'required|max:200']);
         $created_comment = UserComment::create([
             'user_id' => 1,
             'body' => $this->newComment
@@ -30,7 +32,17 @@ class Comment extends Component
         // $this->comments->push($created_comment);
         $this->comments->prepend($created_comment);
         $this->newComment = "";
+        session()->flash('message', 'Comment successfully Added.');
 
+    }
+
+    public function removed($comment_id)
+    {
+        $comment = UserComment::find($comment_id);
+        $this->comments = $this->comments->where('id','!=',$comment_id);
+        session()->flash('danger', 'Comment successfully Removed.');
+
+        // $comment->delete();
     }
 
     public function render()
