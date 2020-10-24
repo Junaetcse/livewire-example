@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="container">
-            @livewire('comment',['com' => $comments2])
+            @livewire('comment')
         </div>
          
         @livewireScripts

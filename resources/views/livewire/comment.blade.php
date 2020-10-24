@@ -1,3 +1,4 @@
+<div>
 <div class="jumbotron text-center">
     <form wire:submit.prevent="addComment">
         
@@ -7,9 +8,9 @@
  </div>
  
  <div class="container">
-    <div class="row">
-        <div class="col text-left">
-            @foreach ($comments as $comment)
+     <div class="row">
+        @foreach ($comments as $comment)
+        <div class="col-md-6 text-left mb-3">
             <div class="card bg-info ">
                 <div class="card-body">
                   <h3 class="card-title">{{$comment->user['name']}}</h3>
@@ -17,8 +18,9 @@
                         <h5>{{$comment->created_at->diffForHumans()}}</h5>
                 </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
+
  </div>
- 
+</div>

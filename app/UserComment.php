@@ -5,9 +5,12 @@ use App\User;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class UserComment extends Model
 {
     //
+    public $table = "comments";
+    protected $fillable = ['user_id','body'];
+
 
     public function user()
     {

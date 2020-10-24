@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $comments2 = App\Comment::all();
-    return view('welcome',compact('comments2'));
+    return view('welcome');
 });
