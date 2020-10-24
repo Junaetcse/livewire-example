@@ -11,7 +11,7 @@ class Comment extends Component
     public $comments;
     public $newComment;
     public function mount(){
-        $initialcomment = UserComment::all();
+        $initialcomment = UserComment::latest()->get();
          $this->comments=$initialcomment;
     }
 
@@ -29,6 +29,7 @@ class Comment extends Component
 
         // $this->comments->push($created_comment);
         $this->comments->prepend($created_comment);
+        $this->newComment = "";
 
     }
 
@@ -37,3 +38,4 @@ class Comment extends Component
         return view('livewire.comment');
     }
 }
+ 
