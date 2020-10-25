@@ -10,9 +10,19 @@ class Comment extends Component
 
     // public $comments;
     public $newComment;
+    public $ticketID = 1;
     public function mount(){
         // $initialcomment = UserComment::latest()->get();
         //  $this->comments=$initialcomment;
+    }
+
+    protected $listeners=[
+        'ticketselected',
+    ];
+
+    public function ticketselected($ticket_id)
+    {
+        $this->ticketID = $ticket_id;
     }
 
     public function updated($newComment)
@@ -26,7 +36,8 @@ class Comment extends Component
         $this->validate(['newComment' => 'required|max:200']);
         $created_comment = UserComment::create([
             'user_id' => 1,
-            'body' => $this->newComment
+            'body' => $this->newComment,
+            'support_ticket_id' => $this->ticketID
         ]);
 
         // $this->comments->push($created_comment);
@@ -49,7 +60,7 @@ class Comment extends Component
     public function render()
     {
         return view('livewire.comment',[
-            'comments' => UserComment::latest()->paginate(4)
+            'comments' => UserComment::where('support_ticket_id', $this->ticketID)->latest()->get()
         ]);
     }
 }

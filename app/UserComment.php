@@ -9,7 +9,7 @@ class UserComment extends Model
 {
     //
     public $table = "comments";
-    protected $fillable = ['user_id','body'];
+    protected $fillable = ['user_id','body','support_ticket_id'];
 
 
     public function user()

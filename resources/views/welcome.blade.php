@@ -16,12 +16,30 @@
                 margin: 0;
                 padding: 0;
             }
+
+            .row p{
+                margin: 0;
+            }
+
+            .ticket {
+                border: 1px solid gray;
+                border-radius: 3px;
+                background: #c2a7a7;
+                height: 300px;
+            }
         </style>
          @livewireStyles
     </head>
     <body>
-        <div class="container">
-            @livewire('comment')
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6 ticket">
+                    @livewire('tickets')
+                </div>
+                <div class="col-md-6">
+                    @livewire('comment')
+                </div>
+            </div>
         </div>
          
         @livewireScripts
