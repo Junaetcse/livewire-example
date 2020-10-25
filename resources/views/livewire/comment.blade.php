@@ -30,13 +30,14 @@
                     <i class="fas fa-trash-alt text-danger" style="float: right; font-size: 20px;cursor: pointer;" wire:click="removed({{$comment->id}})"></i>
                 </div>
                 <div class="card-body">
-                  <h3 class="card-title">{{$comment->user['name']}}</h3>
+                  <h3 class="card-title">{{$comment->user['name']}} {{$comment->id}}</h3>
                          <p class="card-text">{{$comment->body}}</p>
                         <h5>{{$comment->created_at->diffForHumans()}}</h5>
                 </div>
             </div>
         </div>
         @endforeach
+         {{ $comments->links() }}
     </div>
 
  </div>

@@ -8,11 +8,11 @@ use App\UserComment;
 class Comment extends Component
 {
 
-    public $comments;
+    // public $comments;
     public $newComment;
     public function mount(){
-        $initialcomment = UserComment::latest()->get();
-         $this->comments=$initialcomment;
+        // $initialcomment = UserComment::latest()->get();
+        //  $this->comments=$initialcomment;
     }
 
     public function updated($newComment)
@@ -30,7 +30,7 @@ class Comment extends Component
         ]);
 
         // $this->comments->push($created_comment);
-        $this->comments->prepend($created_comment);
+        // $this->comments->prepend($created_comment);
         $this->newComment = "";
         session()->flash('message', 'Comment successfully Added.');
 
@@ -39,15 +39,18 @@ class Comment extends Component
     public function removed($comment_id)
     {
         $comment = UserComment::find($comment_id);
-        $this->comments = $this->comments->where('id','!=',$comment_id);
+        
+        // $this->comments = $this->comments->where('id','!=',$comment_id);
         session()->flash('danger', 'Comment successfully Removed.');
 
-        // $comment->delete();
+        $comment->delete();
     }
 
     public function render()
     {
-        return view('livewire.comment');
+        return view('livewire.comment',[
+            'comments' => UserComment::latest()->paginate(4)
+        ]);
     }
 }
  
