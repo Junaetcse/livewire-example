@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register',  \App\Http\Livewire\Auth\Register::class);
+// Route::get('/dashboard', function () {
+//     return view('layouts.base');
+// });
 
+Route::get('/register',  \App\Http\Livewire\Auth\Register::class);
+Route::get('/dashboard',  \App\Http\Livewire\Profile::class);
 
